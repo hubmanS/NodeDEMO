@@ -6,10 +6,8 @@ const Course = (sequelize, DataTypes) => {
     {
       title: DataTypes.STRING,
       description: DataTypes.STRING
-    },
-    
-    {
-      classMethods: {
+    },{
+      user: {
         associate: models => {
           Course.hasMany(models.User);
         }

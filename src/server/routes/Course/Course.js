@@ -2,7 +2,7 @@ const courseCtrl = require('../../controllers/course.controller');
 
 const users = (router) => {
 
-  router.route('/api/matter/create')
+  router.route('/api/course/create')
     .post(courseCtrl.create);
 
   router.route('/api/matter/:userId')

@@ -19,8 +19,6 @@ const create = (req, res, next) => {
   })
     .then(([course, created]) => {
       if(created) {
-        course.hashed_password = undefined;
-        course.password = undefined;
         return res.status(200).json(course);
       }
       return res.status(400).json({
