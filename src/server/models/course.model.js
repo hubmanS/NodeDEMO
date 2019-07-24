@@ -1,29 +1,21 @@
-const bcrypt = require('bcrypt');
-const config = require('../../config');
+const User=require('./user.model');
 
 const Course = (sequelize, DataTypes) => {
-  const model = sequelize.define('course', {
-    id: {
-      type: DataTypes.UUID,
-      primaryKey: true,
-      defaultValue: DataTypes.UUIDV4,
-      allowNull: false
+  return sequelize.define(
+    "Course",
+    {
+      title: DataTypes.STRING,
+      description: DataTypes.STRING
     },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    user: {
-      type: DataTypes.User,
-      allowNull: false
-    },
-    associate:(models)=>{
-    	Course.hasMany( User,{
-    			foreignKey:'userId'
-    	});	
+    
+    {
+      classMethods: {
+        associate: models => {
+          Course.hasMany(models.User);
+        }
+      }
     }
-  });
-  return model;
-}
+  );
+};
 
 module.exports = Course;
